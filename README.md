@@ -1,7 +1,8 @@
 # World Cup 2026 Informer (STOMP)
 
-A "community-led" World Cup update service built for the SPL course (BGU, Assignment 3).
-Users subscribe to a game channel and report/receive live game events over the
+A live World Cup updates service built for the SPL course at BGU.
+Users subscribe to a game channel, report game events to it, and receive the events
+reported by other subscribers, all over the
 [STOMP 1.2](https://stomp.github.io/stomp-specification-1.2.html) protocol.
 
 - **Server (Java, Maven)** - a STOMP server that runs in either **Thread-Per-Client** or **Reactor** mode.
