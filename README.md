@@ -13,13 +13,13 @@ reported by other subscribers, all over the
  C++ client --STOMP--> Java server (TPC / Reactor) --SQL over TCP--> Python SQL server --> SQLite
 ```
 
-## Layout
+## Structure
 
-| Path | Contents |
-|------|----------|
-| `server/` | Maven project. Entry point: `bgu.spl.net.impl.stomp.StompServer`; protocol in `StompMessagingProtocolImpl`; `ConnectionsImpl` tracks handlers/subscriptions; `Database` talks to the SQL server |
-| `client/` | C++ client (`src/`, `include/`, `makefile`), sample event files in `client/data/` |
-| `data/sql_server.py` | Python SQL server (listens on `127.0.0.1:7778`, creates `stomp_server.db`) |
+```
+server/   Java STOMP server (Thread-Per-Client and Reactor)
+client/   C++ client
+data/     Python SQL server (SQLite)
+```
 
 ## Requirements
 
