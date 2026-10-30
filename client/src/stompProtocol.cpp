@@ -19,7 +19,7 @@ std::string StompProtocol::processInput(std::string input, std::string username)
         std::lock_guard<std::mutex> lock(_lock_A);
         receiptToCommand[receiptId] = "Joined channel " + gameName; //it's ok to join channel twice
         return "SUBSCRIBE\ndestination:/" + gameName + "\nid:" + std::to_string(subId) + 
-               "\nreceipt:" + std::to_string(receiptId) + "\n\n\0";
+               "\nreceipt:" + std::to_string(receiptId) + "\n\n" + std::string(1, '\0');
     }
 
     else if (command== "exit") {
@@ -31,7 +31,7 @@ std::string StompProtocol::processInput(std::string input, std::string username)
             std::lock_guard<std::mutex> lock(_lock_A); 
             receiptToCommand[receiptId] = "Exited channel " + gameName;
             gameToSubId.erase(gameName);
-            return "UNSUBSCRIBE\nid:" + std::to_string(subId) + "\nreceipt:" + std::to_string(receiptId) + "\n\n\0";
+            return "UNSUBSCRIBE\nid:" + std::to_string(subId) + "\nreceipt:" + std::to_string(receiptId) + "\n\n" + std::string(1, '\0');
         }
         else {
             std::cout << "You are not subscribed to " << gameName << std::endl;
@@ -42,7 +42,7 @@ std::string StompProtocol::processInput(std::string input, std::string username)
         int receiptId = receiptIdCounter++;
         std::lock_guard<std::mutex> lock(_lock_A);
         receiptToCommand[receiptId] = "logout";
-        return "DISCONNECT\nreceipt:" + std::to_string(receiptId) + "\n\n\0";
+        return "DISCONNECT\nreceipt:" + std::to_string(receiptId) + "\n\n" + std::string(1, '\0');
     }
     else if (command == "report"){
         return handleReport(ss,username); //sends many frames

@@ -98,7 +98,7 @@ Event::Event(const std::string &frame_body) : team_a_name(""), team_b_name(""), 
             continue;
         }
         if (line.find("time:") == 0) {
-            std::string timeStr = eraseSpace(line.substr(5));
+            timeStr = eraseSpace(line.substr(5));
             continue;
         }
         if (line.find("team a:") == 0) {

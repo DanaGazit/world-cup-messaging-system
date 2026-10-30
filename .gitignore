@@ -107,3 +107,4 @@ cmake-build-*/
 .idea/
 .vscode/
 *.iml
+*.db
